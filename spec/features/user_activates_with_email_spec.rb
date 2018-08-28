@@ -24,11 +24,12 @@ describe 'a user' do
 
       user = User.first
       user_email = open_email_for(user.email)
-      binding.pry
       expect(user_email).to have_subject('Activate your Battleshift account!')
       expect(user_email).to have_body_text('click here to activate')
 
       click_on 'click here to activate your account'
+
+      visit '/dashboard'
 
       expect(page).to have_content('Status: Active')
     end
