@@ -1,8 +1,9 @@
 class StatusController < ApplicationController
   def index
-    @user = User.find_by(email: params[:email])
+    @user = User.find_by(user_token: params[:token])
     @user.status = true
-    @user.save
+    binding.pry
+    @user.save!
     redirect_to '/dashboard'
   end
 end

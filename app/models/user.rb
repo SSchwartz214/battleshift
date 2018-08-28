@@ -7,8 +7,9 @@ class User < ApplicationRecord
 
   def make_token
     if user_token == '0'
-      user_token = SecureRandom.urlsafe_base64
+      self.user_token = SecureRandom.urlsafe_base64
     end
-    save
+    self.save!
+    user_token
   end
 end
