@@ -4,7 +4,7 @@ describe 'a user' do
   include EmailSpec::Helpers
   include EmailSpec::Matchers
   context 'after registration' do
-    it 'can have their status changed to active via email' do
+    xit 'can have their status changed to active via email' do
       name = 'Larry'
       email = 'l3@aol.com'
       password = 'woopdoop'
