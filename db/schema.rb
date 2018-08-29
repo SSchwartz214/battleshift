@@ -33,5 +33,4 @@ ActiveRecord::Schema.define(version: 20180828004801) do
     t.string "user_token", default: "0"
     t.boolean "status", default: false
   end
-
 end
