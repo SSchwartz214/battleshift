@@ -4,8 +4,9 @@ class User < ApplicationRecord
   validates_uniqueness_of :username
   validates_confirmation_of :password
 
-
   has_secure_password
+  has_many :user_games
+  has_many :games, through: :user_games
 
   def make_token
     if user_token == '0'

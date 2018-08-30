@@ -8,9 +8,8 @@ describe 'Battleshift' do
 
       get '/dashboard'
       expect(response).to be_successful
-      expect(page).to have_content('Status: Active')
 
-      
+
     end
   end
 end
