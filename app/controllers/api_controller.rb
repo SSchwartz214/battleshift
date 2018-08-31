@@ -24,4 +24,11 @@ class ApiController < ActionController::API
     end
   end
 
-end
+  def current_turn_check
+    game = Game.find(params[:game_id])
+    @user = set_user
+    if game.current_turn == set_player
+      render json: game, status:400, message: "Invalid move. It's your opponent's turn"
+    end
+  end
+end 
