@@ -1,8 +1,9 @@
 class ApiController < ActionController::API
+
   def set_user
     api_key = request.headers["HTTP_X_API_KEY"]
-    user = User.find_by(user_token: api_key)
-    user
+    @user = User.find_by(user_token: api_key)
+    @user
   end
 
   def set_message(ship_length)
@@ -14,4 +15,13 @@ class ApiController < ActionController::API
       "YOU IDOT"
     end
   end
+
+  def set_player
+    if @user.user_token == ENV["BATTLESHIFT_API_KEY"]
+      "player_1"
+    else @user.email == ENV["BATTLESHIFT_OPPONENT_EMAIL"]
+      "player_2"
+    end
+  end
+
 end
