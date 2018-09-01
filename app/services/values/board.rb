@@ -141,6 +141,7 @@ class Board
 
   def has_west_neighbor?(coordinate)
     coordinate[1..-1].to_i > 1
+
   end
 
   def get_north_neighbor(coordinate)
@@ -191,6 +192,11 @@ class Board
     get_space(coordinate).attacked
   end
 
+  # def get_space(coordinate)
+  #   @board.each do |row|
+  #     row.
+  # end
+
   def contains_hit?(coordinate)
     space_attacked?(coordinate) && space_occupied?(coordinate)
   end
@@ -203,4 +209,3 @@ class Board
     get_column(coordinate) == "1"
   end
 end
-

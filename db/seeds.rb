@@ -31,8 +31,11 @@ game_attributes = {
   player_2_board: player_2_board,
   player_1_turns: 0,
   player_2_turns: 0,
-  current_turn: "challenger"
+  current_turn: "player_1"
 }
 
 game = Game.new(game_attributes)
 game.save!
+
+User.create(username: 'Seth', email: 'sschwartz214@gmail.com', password_digest: 's', status: true, user_token: 'AyYClax4fvejaSjrdtfQ3Q')
+User.create(username: 'Tristan', email: 'tristan0bambauer@gmail.com', password_digest: 't', status: true, user_token: 'fBVvGe83YhudPAeVlftxUw')

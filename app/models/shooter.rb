@@ -6,8 +6,13 @@ class Shooter
   end
 
   def fire!
+    result = {}
     if valid_shot?
-      space.attack!
+      result[:hit] = space.attack!
+      if space.contents != nil && space.contents.is_sunk?
+        result[:sunk] = true
+      end
+      result 
     else
       raise InvalidAttack.new("Invalid coordinates.")
     end
