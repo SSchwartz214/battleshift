@@ -1,10 +1,11 @@
 class Space
-  attr_reader :coordinates, :status, :contents
+  attr_reader :coordinates, :status, :contents, :occupied
 
   def initialize(coordinates)
     @coordinates = coordinates
     @contents    = nil
     @status      = "Not Attacked"
+    @occupied = false
   end
 
   def attack!
@@ -28,4 +29,3 @@ class Space
     status == "Not Attacked"
   end
 end
-

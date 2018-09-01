@@ -9,5 +9,5 @@ class Game < ApplicationRecord
   validates :player_2_board, presence: true
 
   has_many :user_games
-  has_many :users, through: :games
+  has_many :users, through: :user_games
 end
