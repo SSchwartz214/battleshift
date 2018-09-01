@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20180830214206) do
     t.string "winner"
     t.integer "player_1_turns"
     t.integer "player_2_turns"
-    t.integer "current_turn", default: 0
+    t.string "current_turn", default: "start"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "player_1_key"
