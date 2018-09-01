@@ -1,6 +1,6 @@
 class Api::V1::Games::ShotsController < ApiController
   include ShipChecker
-  before_action :current_turn_check, :winner?
+  before_action :check_headers, :current_turn_check, :winner?
 
   def create
     game = Game.find(params[:game_id])
