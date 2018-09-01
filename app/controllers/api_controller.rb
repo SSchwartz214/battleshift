@@ -24,6 +24,12 @@ class ApiController < ActionController::API
     end
   end
 
+  def start_ship_placement(game)
+    if game.current_turn == "start"
+      game.current_turn = "player_1"
+    end
+  end
+
   def current_turn_check
     game = Game.find(params[:game_id])
     @user = set_user

@@ -6,7 +6,7 @@ class CreateGames < ActiveRecord::Migration[5.1]
       t.string :winner
       t.integer :player_1_turns
       t.integer :player_2_turns
-      t.integer :current_turn, default: "player_1"
+      t.string :current_turn, default: "start"
       t.timestamps
     end
   end
