@@ -12,7 +12,7 @@ class Shooter
       if space.contents != nil && space.contents.is_sunk?
         result[:sunk] = true
       end
-      result
+      result 
     else
       raise InvalidAttack.new("Invalid coordinates.")
     end

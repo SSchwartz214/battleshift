@@ -1,12 +1,10 @@
 class Api::V1::Games::ShotsController < ApiController
-  before_action :current_turn_check
-  # , :winner?
+  include ShipChecker
+  before_action :current_turn_check, :winner?
 
   def create
     game = Game.find(params[:game_id])
     @user = set_user
-    # player_ship_1 =
-    # player_ship_2
     if set_player == "player_1"
       game.current_turn = set_player
       turn_processor = TurnProcessor.new(game, params[:shot][:target])
@@ -15,8 +13,13 @@ class Api::V1::Games::ShotsController < ApiController
       turn_processor = TurnProcessor.new(game, params[:shot][:target])
     end
     if turn_processor.run! == true
-      game.save!
-      render json: game, message: turn_processor.message
+      if set_player == "player_1"
+        @addon = check_ship_status(game, game.player_2_board.board, @user.email)
+      else
+        @addon = check_ship_status(game, game.player_1_board.board, @user.email)
+      end
+      @whole = turn_processor.message + @addon
+      render json: game, message: @whole
     else
       render json: game, status:400, message: "Invalid coordinates"
     end

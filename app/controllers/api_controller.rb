@@ -24,33 +24,18 @@ class ApiController < ActionController::API
     end
   end
 
-  def check_ship_status(game, board)
-    ships = []
-    board.each do |row|
-      row.each do |line|
-        line.each_pair do |key, value|
-          ships << value.contents if value.contents != nil
-        end
-      end
-    end
-    sunken(game, ships.uniq!)
-  end
-
-  # def winner?
-  #   game[:winner]
-  # end
-
-  def sunken?(ships)
-    if ships.all? { |ship| ship.is_sunk? }
-      render json: game, message: "Your shot resulted in a Hit. Battleship sunk. Game over."
-    end
-  end
-
   def current_turn_check
     game = Game.find(params[:game_id])
     @user = set_user
     if game.current_turn == set_player
       render json: game, status:400, message: "Invalid move. It's your opponent's turn"
+    end
+  end
+
+  def winner?
+    game = Game.find(params[:game_id])
+    if game.winner != nil
+      render json: game, status:400, message: "Invalid move. Game over."
     end
   end
 end
