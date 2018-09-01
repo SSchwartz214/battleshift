@@ -1,5 +1,6 @@
 class Api::V1::Games::ShotsController < ApiController
   before_action :current_turn_check
+  # , :winner?
 
   def create
     game = Game.find(params[:game_id])
