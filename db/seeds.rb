@@ -37,5 +37,5 @@ game_attributes = {
 game = Game.new(game_attributes)
 game.save!
 
-User.create(username: 'Seth', email: 'sschwartz214@gmail.com', password_digest: 's', status: true, user_token: 'AyYClax4fvejaSjrdtfQ3Q')
-User.create(username: 'Tristan', email: 'tristan0bambauer@gmail.com', password_digest: 't', status: true, user_token: 'fBVvGe83YhudPAeVlftxUw')
+User.create(username: 'Seth', email: 'sschwartz214@gmail.com', password: 's', status: true, user_token: 'AyYClax4fvejaSjrdtfQ3Q')
+User.create(username: 'Tristan', email: 'tristan0bambauer@gmail.com', password: 't', status: true, user_token: 'fBVvGe83YhudPAeVlftxUw')
