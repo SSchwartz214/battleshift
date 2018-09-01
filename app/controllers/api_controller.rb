@@ -1,9 +1,16 @@
 class ApiController < ActionController::API
 
+  def check_headers
+    api_key = request.headers["HTTP_X_API_KEY"]
+    game = Game.find(params[:game_id])
+    if api_key != game.player_1_key && api_key != game.player_2_key
+      render json: {message: "Unauthorized"}, status:401
+    end
+  end
+
   def set_user
     api_key = request.headers["HTTP_X_API_KEY"]
     @user = User.find_by(user_token: api_key)
-    @user
   end
 
   def set_message(ship_length)
@@ -12,7 +19,7 @@ class ApiController < ActionController::API
     elsif ship_length == 2
       "Successfully placed ship with a size of 2. You have 0 ship(s) to place."
     else
-      "YOU IDIOT"
+      "STAAHP IT"
     end
   end
 
