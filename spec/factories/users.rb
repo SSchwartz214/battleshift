@@ -1,9 +1,17 @@
 FactoryBot.define do
   factory :user do
-    username { 'Reese' }
-    email { 'example@example.com' }
+    username { 'eddie_brock' }
+    email { 'spiderman2isbetterthanspidermanhomecoming@doctoroctopus.com' }
     password { 'ducktales' }
-    user_token { 0 }
-    status { false }
+    user_token { '007' }
+    status { true }
+
+    factory :user2 do
+      username { 'wade_wilson' }
+      email { 'doctor@octagonapus.com' }
+      password { 'darkwing_duck' }
+      user_token { '009' }
+      status { true }
+    end
   end
 end
