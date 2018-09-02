@@ -21,7 +21,7 @@ describe "Api::V1::Shots" do
 
       headers = { "CONTENT_TYPE" => "application/json" }
       json_payload = {target: "A1"}.to_json
-      
+
       post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
 
       expect(response).to be_success
