@@ -13,6 +13,7 @@ module ShipChecker
 
   def sunken_ship?(game, ships, email)
     message = ""
+    require "pry"; binding.pry
     if ships.all? { |ship| ship.is_sunk? }
       game.winner = email
       game.save!
