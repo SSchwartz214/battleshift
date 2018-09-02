@@ -1,5 +1,4 @@
 class ApiController < ActionController::API
-
   def check_headers
     api_key = request.headers["HTTP_X_API_KEY"]
     game = Game.find(params[:game_id])
