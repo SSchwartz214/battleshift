@@ -8,15 +8,14 @@ module ShipChecker
         end
       end
     end
-    sunken?(game, ships.uniq!, email)
+    sunken_ship?(game, ships.uniq!, email)
   end
 
-  def sunken?(game, ships, email)
+  def sunken_ship?(game, ships, email)
     message = ""
     if ships.all? { |ship| ship.is_sunk? }
       game.winner = email
       game.save!
-      game.reload
       message << " Game over."
     end
     message
