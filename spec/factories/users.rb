@@ -6,7 +6,7 @@ FactoryBot.define do
     user_token { '007' }
     status { true }
 
-    factory :user2 do
+    factory :user_2 do
       username { 'wade_wilson' }
       email { 'doctor@octagonapus.com' }
       password { 'darkwing_duck' }
