@@ -1,4 +1,6 @@
 class Api::V1::GamesController < ActionController::API
+  include GameInitiator
+
   def show
     game = Game.find(params[:id])
     if game != nil
@@ -9,11 +11,11 @@ class Api::V1::GamesController < ActionController::API
   end
 
   def create
-    player_1 = User.find_by(user_token: request.headers["HTTP_X_API_KEY"])
-    player_2 = User.find_by(email: params["opponent_email"])
-    board_1 = Board.new(4)
-    board_2 = Board.new(4)
-    game = Game.create(player_1_board: board_1, player_2_board: board_2, player_1_turns: 0, player_2_turns: 0, current_turn: 0, player_1_key: player_1.user_token, player_2_key: player_2.user_token)
-    render json: game
+    if validate_users(request.headers["HTTP_X_API_KEY"], params["opponent_email"])
+      game = Game.create(create_game_params) if Game.create(create_game_params)
+      render json: game
+    else
+      render json: {message: "Invalid user, please sign up for an account"}, status:401
+    end
   end
 end
