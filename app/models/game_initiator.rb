@@ -2,7 +2,11 @@ module GameInitiator
   def validate_users(user_1_token, user_2_email)
     if status_confirmation(user_1_token, user_2_email) == true
       @user_1 = User.find_by(user_token: user_1_token)
+      @user_1.identifier = @user_1.user_token
+      @user_1.save!
       @user_2 = User.find_by(email: user_2_email)
+      @user_2.identifier = @user_2.email
+      @user_2.save!
     end
   end
 
