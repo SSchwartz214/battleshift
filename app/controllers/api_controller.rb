@@ -23,15 +23,14 @@ class ApiController < ActionController::API
   end
 
   def set_player
-    if @user.user_token == @user.identifier
+    if @user.user_token == ENV["BATTLESHIFT_API_KEY"]
       "player_1"
-    else @user.email == @user.identifier
+    else @user.email == ENV["BATTLESHIFT_OPPONENT_EMAIL"]
       "player_2"
     end
   end
 
   def start_ship_placement(game)
-    # game = Game.find_by(id: params[:game_id])
     if game.current_turn == "start"
       game.current_turn = "player_1"
     end
