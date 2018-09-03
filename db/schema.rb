@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180830214206) do
+ActiveRecord::Schema.define(version: 20180903032156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20180830214206) do
     t.string "password_digest"
     t.string "user_token", default: "0"
     t.boolean "status", default: false
+    t.string "identifier"
   end
 
   add_foreign_key "user_games", "games"

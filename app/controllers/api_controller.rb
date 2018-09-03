@@ -23,9 +23,9 @@ class ApiController < ActionController::API
   end
 
   def set_player
-    if @user.user_token == ENV["BATTLESHIFT_API_KEY"]
+    if @user.user_token == @user.identifier
       "player_1"
-    else @user.email == ENV["BATTLESHIFT_OPPONENT_EMAIL"]
+    else @user.email == @user.identifier
       "player_2"
     end
   end
