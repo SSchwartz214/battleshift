@@ -60,14 +60,15 @@ describe 'POST /api/v1/games/:id/ships/1' do
       headers_2 = {"X-API-Key" => user_1.user_token, "CONTENT_TYPE" => "application/json" }
       post "/api/v1/games/#{game.id}/ships", params: json_payload_2, headers: headers_2
       game.save!
-      binding.pry
 
       json_payload_3 = { ship_size: 2, start_space: "B2", end_space: "C2" }.to_json
       headers_3 = {"X-API-Key" => user_1.user_token, "CONTENT_TYPE" => "application/json" }
       post "/api/v1/games/#{game.id}/ships", params: json_payload_3, headers: headers_3
       game.save!
 
-      expect(response.status).to eq(200)
+      # expect(response).to_not be_success
+      # expect(response.message).to eq("You've already placed all of your ships")
+      expect(response.status).to eq(400)
       expect(response.message).to eq("Ships already placed.")
     end
   end

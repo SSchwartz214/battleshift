@@ -31,6 +31,7 @@ class ApiController < ActionController::API
   end
 
   def start_ship_placement(game)
+    # game = Game.find_by(id: params[:game_id])
     if game.current_turn == "start"
       game.current_turn = "player_1"
     end

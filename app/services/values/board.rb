@@ -62,7 +62,7 @@ class Board
     ships.uniq!
   end
 
-  def verify_ship_order
-
+  def verify_ship_number
+    check_board_for_ships.length <= 2
   end
 end

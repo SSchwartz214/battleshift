@@ -3,6 +3,7 @@ class Api::V1::Games::ShipsController < ApiController
 
   def create
     game = Game.find_by(id: params["game_id"])
+    presenter = ShipPresenter.new(game)
     ship = Ship.new(params[:ship][:ship_size])
     ship.place(params[:ship][:start_space], params[:ship][:end_space])
     start_ship_placement(game)
