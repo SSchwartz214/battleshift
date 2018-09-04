@@ -2,7 +2,11 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require 'simplecov'
-SimpleCov.start "rails"
+SimpleCov.start "rails" do
+  add_filter "app/channels/application_cable/channel.rb"
+  add_filter "app/channels/application_cable/connection.rb"
+  add_filter "app/jobs/application_job.rb"
+end
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
@@ -12,7 +16,6 @@ require 'webmock/rspec'
 require 'vcr'
 require 'email_spec'
 require 'email_spec/rspec'
-
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/cassettes"

@@ -2,7 +2,7 @@ class Api::V1::GamesController < ActionController::API
   include GameInitiator
 
   def show
-    game = Game.find(params[:id])
+    game = Game.find_by(id: params[:id])
     if game != nil
       render json: game
     else

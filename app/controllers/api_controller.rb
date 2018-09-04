@@ -2,7 +2,11 @@ class ApiController < ActionController::API
   def check_headers
     api_key = request.headers["HTTP_X_API_KEY"]
     game = Game.find(params[:game_id])
-    if api_key != game.player_1_key && api_key != game.player_2_key
+    if api_key == game.player_1_key
+      true
+    elsif api_key == game.player_2_key
+      true
+     else
       render json: {message: "Unauthorized"}, status:401
     end
   end
@@ -23,16 +27,10 @@ class ApiController < ActionController::API
   end
 
   def set_player
-    if @user.user_token == ENV["BATTLESHIFT_API_KEY"]
+    if @user.user_token == @user.identifier
       "player_1"
-    else @user.email == ENV["BATTLESHIFT_OPPONENT_EMAIL"]
+    else @user.email == @user.identifier
       "player_2"
-    end
-  end
-
-  def start_ship_placement(game)
-    if game.current_turn == "start"
-      game.current_turn = "player_1"
     end
   end
 
