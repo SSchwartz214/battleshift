@@ -12,7 +12,7 @@ class Shooter
       if space.contents != nil && space.contents.is_sunk?
         result[:sunk] = true
       end
-      result 
+      result
     else
       raise InvalidAttack.new("Invalid coordinates.")
     end
@@ -22,15 +22,15 @@ class Shooter
     new(board: board, target: target).fire!
   end
 
+  def valid_shot?
+    board.space_names.include?(target)
+  end
+  
   private
     attr_reader :board, :target
 
     def space
       @space ||= board.locate_space(target)
-    end
-
-    def valid_shot?
-      board.space_names.include?(target)
     end
 end
 
